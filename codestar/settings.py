@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +29,10 @@ SECRET_KEY = 'django-insecure-d#xc3961caoar8j#70#vbme*im9g1)ke$sxbp_p+pa&l(qk)h+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-pumpkinpoem-blogdjango-yu8gi3jxond.ws.codeinstitute-ide.net', '.herokuapp.com']
+ALLOWED_HOSTS = [
+    '8000-pumpkinpoem-blogdjango-yu8gi3jxond.ws.codeinstitute-ide.net',
+    '.herokuapp.com',
+    ]
 
 
 # Application definition
@@ -74,13 +81,16 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("postgres://uwhuu4f4d7m:Az6P11clEvGU@ep-gentle-mountain-a23bxz6h.eu-central-1.aws.neon.tech/swell_flap_union_115120"))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

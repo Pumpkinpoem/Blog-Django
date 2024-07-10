@@ -4,7 +4,10 @@ from .models import Post
 
 # Create your views here.
 
-def post_detail(request, slug):
+
+
+
+def post_detail(request, event_id):
     """
     Display an individual :model:`blog.Post`.
 
@@ -24,7 +27,8 @@ def post_detail(request, slug):
     return render(
         request,
         "blog/post_detail.html",
-        {"post": post},
+        {"post": post,
+         "coder": "Matt Rudge"},
     )
 
 class PostList(generic.ListView):
